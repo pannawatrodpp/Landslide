@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}{% block title %} Dynamic Landslide Chiang Mai {% endblock %} {% block content %}
+<h4 class="text-center p-3">แม่กำปอง (ตำบลห้วยแก้ว อำเภอแม่ออน จังหวัดเชียงใหม่)</h4>
+
+<!-- Map -->
+{% block section %} {% include 'map.html' %}
+<script>
+  map.setView([18.86555322762568, 99.34943132834088], 14);
+</script>
+{% endblock %}
+
+<!-- Risk Level -->
+<br />
+<div class="card" style="border-radius: 0.75rem">
+  <p class="card-header text-center">ความเสี่ยงดินถล่ม</p>
+  <div class="card-body">
+    <ul class="d-flex justify-content-between">
+      <li style="color: red"><p style="color: black">มาก</p></li>
+      <li style="color: orange"><p style="color: black">ปานกลาง</p></li>
+      <li style="color: yellow"><p style="color: black">น้อย</p></li>
+      <li style="color: white"><p style="color: black">ไม่มี</p></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Tab Landslide -->
+<br />
+<div class="card" style="border-radius: 0.75rem">
+  <div class="nav nav-tabs justify-content-center bg-light" id="nav-tab" role="tablist">
+    <button style="color: black" class="nav-link active" id="nav-2yr-tab" data-bs-toggle="tab" data-bs-target="#nav-2yr" type="button" role="tab" aria-controls="nav-2yr" aria-selected="true">ความเสี่ยงดินถล่มคาบ 2 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-5yr-tab" data-bs-toggle="tab" data-bs-target="#nav-5yr" type="button" role="tab" aria-controls="nav-5yr" aria-selected="false">ความเสี่ยงดินถล่มคาบ 5 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-10yr-tab" data-bs-toggle="tab" data-bs-target="#nav-10yr" type="button" role="tab" aria-controls="nav-10yr" aria-selected="false">ความเสี่ยงดินถล่มคาบ 10 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-20yr-tab" data-bs-toggle="tab" data-bs-target="#nav-20yr" type="button" role="tab" aria-controls="nav-20yr" aria-selected="false">ความเสี่ยงดินถล่มคาบ 20 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-50yr-tab" data-bs-toggle="tab" data-bs-target="#nav-50yr" type="button" role="tab" aria-controls="nav-50yr" aria-selected="false">ความเสี่ยงดินถล่มคาบ 50 ปี</button>
+  </div>
+  <div class="tab-content" id="nav-tabContent">
+    {% load static %}
+    <div class="tab-pane fade show active" id="nav-2yr" role="tabpanel" aria-labelledby="nav-2yr-tab"><img src="{% static 'img/ls/02-2yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-5yr" role="tabpanel" aria-labelledby="nav-5yr-tab"><img src="{% static 'img/ls/02-5yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-10yr" role="tabpanel" aria-labelledby="nav-10yr-tab"><img src="{% static 'img/ls/02-10yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-20yr" role="tabpanel" aria-labelledby="nav-20yr-tab"><img src="{% static 'img/ls/02-20yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-50yr" role="tabpanel" aria-labelledby="nav-50yr-tab"><img src="{% static 'img/ls/02-50yr.png' %}" class="w-100" /></div>
+  </div>
+</div>
+
+<!-- Tab DDF -->
+<br />
+<div class="card" style="border-radius: 0.75rem">
+  <div class="nav nav-tabs justify-content-center bg-light" id="nav-tab" role="tablist">
+    <button style="color: black" class="nav-link active" id="nav-ddf2yr-tab" data-bs-toggle="tab" data-bs-target="#nav-ddf2yr" type="button" role="tab" aria-controls="nav-ddf2yr" aria-selected="true">น้ำฝนคาบ 2 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-ddf5yr-tab" data-bs-toggle="tab" data-bs-target="#nav-ddf5yr" type="button" role="tab" aria-controls="nav-ddf5yr" aria-selected="false">น้ำฝนคาบ 5 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-ddf10yr-tab" data-bs-toggle="tab" data-bs-target="#nav-ddf10yr" type="button" role="tab" aria-controls="nav-ddf10yr" aria-selected="false">น้ำฝนคาบ 10 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-ddf20yr-tab" data-bs-toggle="tab" data-bs-target="#nav-ddf20yr" type="button" role="tab" aria-controls="nav-ddf20yr" aria-selected="false">น้ำฝนคาบ 20 ปี</button>
+    <button style="color: black" class="nav-link" id="nav-ddf50yr-tab" data-bs-toggle="tab" data-bs-target="#nav-ddf50yr" type="button" role="tab" aria-controls="nav-ddf50yr" aria-selected="false">น้ำฝนคาบ 50 ปี</button>
+  </div>
+  <div class="tab-content" id="nav-tabContent">
+    {% load static %}
+    <div class="tab-pane fade show active" id="nav-ddf2yr" role="tabpanel" aria-labelledby="nav-ddf2yr-tab"><img src="{% static 'img/ddf/02-2yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-ddf5yr" role="tabpanel" aria-labelledby="nav-ddf5yr-tab"><img src="{% static 'img/ddf/02-5yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-ddf10yr" role="tabpanel" aria-labelledby="nav-ddf10yr-tab"><img src="{% static 'img/ddf/02-10yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-ddf20yr" role="tabpanel" aria-labelledby="nav-ddf20yr-tab"><img src="{% static 'img/ddf/02-20yr.png' %}" class="w-100" /></div>
+    <div class="tab-pane fade" id="nav-ddf50yr" role="tabpanel" aria-labelledby="nav-ddf50yr-tab"><img src="{% static 'img/ddf/02-50yr.png' %}" class="w-100" /></div>
+  </div>
+</div>
+
+<!-- Card Station -->
+<br />
+<div class="card" style="border-radius: 0.75rem">
+  <p class="card-header text-center">สถานีน้ำฝน</p>
+  {% load static %}
+  <img src="{% static 'img/station/01.png' %}" class="card-body w-100" />
+</div>
+
+<!-- Chart -->
+<br />
+<div class="card" style="border-radius: 0.75rem" >
+  <p class="card-header text-center">น้ำฝนรายสถานี</p>
+  <canvas class="card-body p-3" id="myChart" width="400" height="150"></canvas>
+</div>
+<script>
+  const labelRain = [];
+  const dataRain = [];
+</script>
+{% for i in rain %} {% if i.scope == "02" %}
+<script>
+  labelRain.push("{{i.station}}");
+  dataRain.push(parseFloat("{{i.rain}}"));
+</script>
+{% endif %} {% endfor %}
+<script>
+  const ctx = document.getElementById("myChart");
+  const myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labelRain,
+      datasets: [
+        {
+          label: "ปริมาณน้ำฝนรายสถานี (มม.)",
+          data: dataRain,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+</script>
+
+{% endblock %}

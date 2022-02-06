@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}{% block title %} Dynamic Landslide Chiang Mai {% endblock %} {% block content %}
+<h4 class="text-center p-3">ข้อมูลย้อนหลัง</h4>
+
+<div id="mapDynamic"></div>
+<style>
+  #mapDynamic {
+    height: 36.15rem;
+  }
+</style>
+<script>
+  var mapDynamic = L.map("mapDynamic").setView([parseFloat("{{history.latitude}}"), parseFloat("{{history.longitude}}")], 14);
+  L.tileLayer("https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=62b651d04ccb48b5adf4d150d9f36d57", {
+    maxZoom: 18,
+    tileSize: 512,
+    zoomOffset: -1,
+  }).addTo(mapDynamic);
+</script>
+
+{% if history.risk > 0.9 %}
+<script>
+  var circle = L.circle([parseFloat("{{history.latitude}}"), parseFloat("{{history.longitude}}")], {
+    color: "red",
+    fillColor: "#ff0000",
+    fillOpacity: 1,
+    radius: 3,
+  }).addTo(mapDynamic);
+</script>
+{% elif history.risk > 0.75 %}
+<script>
+  var circle = L.circle([parseFloat("{{history.latitude}}"), parseFloat("{{history.longitude}}")], {
+    color: "orange",
+    fillColor: "#ffa500",
+    fillOpacity: 1,
+    radius: 3,
+  }).addTo(mapDynamic);
+</script>
+{% elif history.risk > 0.5 %}
+<script>
+  var circle = L.circle([parseFloat("{{history.latitude}}"), parseFloat("{{history.longitude}}")], {
+    color: "yellow",
+    fillColor: "#ffff00",
+    fillOpacity: 1,
+    radius: 3,
+  }).addTo(mapDynamic);
+</script>
+{% endif %}
+{% endblock %}

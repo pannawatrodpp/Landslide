@@ -1,0 +1,110 @@
+{% extends 'layout.html' %} {% block title %} Dynamic Landslide Chiang Mai {% endblock %} {% block content %}
+<h4 class="text-center p-3">แผนที่ความเสี่ยงชุมชน</h4>
+<div class="row">
+  <div class="col-lg-6">
+    <div id="mapAll"></div>
+    <style>
+      #mapAll {
+        height: 40rem;
+      }
+    </style>
+    <script>
+      var mapAll = L.map("mapAll").setView([18.788187932870155, 98.98523626490541], 10);
+      L.tileLayer("https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=62b651d04ccb48b5adf4d150d9f36d57", {
+        maxZoom: 18,
+        tileSize: 512,
+        zoomOffset: -1,
+      }).addTo(mapAll);
+      L.marker([19.901635393640483, 99.0424094582897]).addTo(mapAll);
+      L.marker([18.86555322762568, 99.34943132834088]).addTo(mapAll);
+      L.marker([18.939043235127237, 98.81246711157635]).addTo(mapAll);
+      L.marker([18.81638834589227, 98.89125771293459]).addTo(mapAll);
+      L.marker([18.540612605384062, 98.52361195667108]).addTo(mapAll);
+    </script>
+    <br />
+  </div>
+  <div class="col-lg-6">
+    <select class="form-select" style="border-radius: 0.75rem" onchange="mapValue(this)">
+      <option value="1" selected>อ่างขาง (ตำบลม่อนปิ่น อำเภอฝาง จังหวัดเชียงใหม่)</option>
+      <option value="2">แม่กำปอง (ตำบลห้วยแก้ว อำเภอแม่ออน จังหวัดเชียงใหม่)</option>
+      <option value="3">ม่อนแจ่ม (ตำบลแม่แรม อำเภอแม่ริม จังหวัดเชียงใหม่)</option>
+      <option value="4">ดอยสุเทพปุย (ตำบลสุเทพ อำเภอเมือง จังหวัดเชียงใหม่)</option>
+      <option value="5">ขุนกลาง (ตำบลบ้านหลวง อำเภอจอมทอง จังหวัดเชียงใหม่)</option>
+    </select>
+    <br />
+    {% block section %} {% include 'map.html'%}
+    <script>
+      function mapValue(selectObject) {
+        if (selectObject.value == "1") {
+          map.setView([19.901635393640483, 99.0424094582897], 14);
+        } else if (selectObject.value == "2") {
+          map.setView([18.86555322762568, 99.34943132834088], 14);
+        } else if (selectObject.value == "3") {
+          map.setView([18.939043235127237, 98.81246711157635], 14);
+        } else if (selectObject.value == "4") {
+          map.setView([18.81638834589227, 98.89125771293459], 14);
+        } else if (selectObject.value == "5") {
+          map.setView([18.540612605384062, 98.52361195667108], 14);
+        }
+      }
+    </script>
+    {% endblock %} 
+  </div>
+  <br />
+
+  <div class="row">
+    <h5 class="text-center">ข้อมูลวันที่ {{dateToday}}</h5>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col-4">พื้นที่</th>
+            <th scope="col-4">น้ำฝนรายวันเวลา 7.00 น</th>
+            <th scope="col-4">ความเสี่ยงดินถล่ม</th>
+            <!-- <th scope="col"></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in rainTotal %} {% if i.scope == "01" %}
+          <tr>
+            <th scope="row">อ่างขาง</th>
+            <td>{{i.rainTotal}} มม.</td>
+            <td>ไม่มี</td>
+            <!-- <td></td> -->
+          </tr>
+          {% elif i.scope == "02" %}
+          <tr>
+            <th scope="row">แม่กำปอง</th>
+            <td>{{i.rainTotal}} มม.</td>
+            <td>ไม่มี</td>
+            <!-- <td></td> -->
+          </tr>
+          {% elif i.scope == "03" %}
+          <tr>
+            <th scope="row">ม่อนแจ่ม</th>
+            <td>{{i.rainTotal}} มม.</td>
+            <td>ไม่มี</td>
+            <!-- <td></td> -->
+          </tr>
+          {% elif i.scope == "04" %}
+          <tr>
+            <th scope="row">ดอยสุเทพปุย</th>
+            <td>{{i.rainTotal}} มม.</td>
+            <td>ไม่มี</td>
+            <!-- <td></td> -->
+          </tr>
+          {% elif i.scope == "05" %}
+          <tr>
+            <th scope="row">ขุนกลาง</th>
+            <td>{{i.rainTotal}} มม.</td>
+            <td>ไม่มี</td>
+            <!-- <td></td> -->
+          </tr>
+          {% endif %} {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

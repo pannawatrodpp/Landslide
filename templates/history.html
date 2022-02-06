@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}{% block title %} Dynamic Landslide Chiang Mai {% endblock %} {% block content %}
+<h4 class="text-center p-3">ข้อมูลย้อนหลัง</h4>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">วันที่</th>
+        <!-- <th scope="col">พื้นที่</th> -->
+        <th scope="col">น้ำฝน</th>
+        <th scope="col">ความเสี่ยงดินถล่ม</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in history %}
+      <tr>
+        <th scope="row">{{i.date}}</th>
+        <!-- <td>{% if i.scope == "01" %} อ่างขาง {% elif i.scope == "02" %} แม่กำปอง {% elif i.scope == "03" %} ม่อนแจ่ม {% elif i.scope == "04" %} ดอยสุเทพปุย {% elif i.scope == "05" %} ขุนกลาง {% endif %}</td> -->
+        <td>{{i.rain}}</td>
+        <td>{{i.risk}}</td>
+        <td><a class="btn btn-primary" href="{% url 'dynamicmap' i.id %}">ดูข้อมูล</a></td>
+        <!-- <td></td> -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
